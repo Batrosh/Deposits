@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${credit.name}"></title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: url(&quot;/img/bg.jpg&quot;) top / cover;">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page product-page">
+    <div class="container" style="background: #ffffff;padding: 15px;margin-top: 150px;">
+
+        <div class="text-center block-heading">
+            <h2 class="text-info" th:text="${credit.name}"></h2>
+        </div>
+
+        <div class="block-content">
+            <div class="product-info">
+
+                <div class="row">
+                    <div class="col-12 d-xl-flex justify-content-xl-center" style="padding: 0;">
+                        <img class="img-fluid d-block small-preview" th:src="'/img/' + ${credit.file}"
+                             style="min-width: 50%;max-width: 50%;"></div>
+                    <div th:if="${role == 'MANAGER'}" class="col-12" style="padding: 20px;">
+                        <div class="row">
+                            <div class="col">
+                                <a class="btn btn-success" role="button" th:href="'/credits/edit/' + ${credit.id}"
+                                   style="min-width: 100%;">Редактировать</a>
+                            </div>
+                            <div class="col">
+                                <a class="btn btn-danger" role="button" th:href="'/credits/delete/' + ${credit.id}"
+                                   style="min-width: 100%;">Удалить</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="padding: 20px;">
+                        <form method="post" th:action="'/credits/form/' + ${credit.id}">
+                            <div class="row">
+                                <div class="col">
+                                    <input class="form-control" type="number" name="sum" step="1"
+                                           th:min="${credit.minLimit}" th:max="${credit.maxLimit}"
+                                           placeholder="Сумма депозита" required="">
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn btn-primary" type="submit">Оформить заявку</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-4"><p class="lead">Процентная ставка: <span
+                                    th:text="${credit.rate} + '%'"></span></p></div>
+                            <div class="col-4"><p class="lead">Сроки: <span
+                                    th:text="${credit.term} + ' месяц(ев)'"></span></p>
+                            </div>
+                            <div class="col-4"><p class="lead">Лимиты: <span
+                                    th:text="${credit.minLimit} + ' - ' + ${credit.maxLimit}"></span></p></div>
+                            <div class="col-12"><p class="lead">Цель: <span th:text="${credit.goal.name}"></span></p>
+                            </div>
+                            <div class="col-12">
+                                <p class="lead">Описание: <span th:text="${credit.description}"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>

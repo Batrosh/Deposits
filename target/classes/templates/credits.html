@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Депозиты</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: url(&quot;/img/bg.jpg&quot;) top / cover;">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page catalog-page">
+    <div class="container" style="background: #ffffff;margin-top: 150px;padding: 15px;">
+        <div class="d-xl-flex justify-content-xl-center block-heading">
+            <h2 class="text-info">Депозиты</h2>
+        </div>
+        <div class="content">
+            <form style="padding: 20px;" action="/credits/search" method="post">
+                <div class="row">
+                    <div class="col-auto"><a class="btn btn-primary" role="button" href="/">Сброс</a></div>
+                    <div class="col"><select class="form-select" required="" name="goal">
+                        <option th:each="g : ${goals}" th:value="${g}" th:label="${g.name}" th:selected="${g == selectedG}"></option>
+                    </select></div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary" type="submit">Поиск</button>
+                    </div>
+                </div>
+            </form>
+            <div class="products">
+                <div class="row">
+                    <div th:each="c : ${credits}" class="col-4">
+                        <div class="clean-product-item">
+                            <div class="image"><a th:href="'/credits/' + ${c.id}">
+                                <img class="img-fluid d-block mx-auto" th:src="'/img/' + ${c.file}"></a>
+                            </div>
+                            <p style="margin-bottom: 10px;" class="lead" th:text="${c.name}"></p>
+                            <p style="margin-bottom: 10px;">Проценты: <span th:text="${c.rate}"></span>%</p>
+                            <p style="margin-bottom: 10px;">Срок: <span th:text="${c.term}"></span> месяцев</p>
+                            <p style="margin-bottom: 10px;">Сумма: <span th:text="${c.minLimit} + ' - ' + ${c.maxLimit}"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>

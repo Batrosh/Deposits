@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Аналитика</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: url(&quot;/img/bg.jpg&quot;) top / cover;">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page catalog-page">
+    <div class="container" style="background: #ffffff;margin-top: 150px;padding: 15px;">
+        <div class="d-xl-flex justify-content-xl-center block-heading">
+            <h2 class="text-info">Аналитика</h2>
+        </div>
+        <div class="content">
+
+            <a onclick="generatePDF()" class="btn btn-primary w-100">PDF</a>
+            <hr>
+            <div class="row">
+                <div class="col"></div>
+                <div id="generatePDF" class="col-6">
+                    <div id="drawAppsStatuses" class="mb-5"></div>
+                    <hr>
+                    <p class="fs-5 mb-1">Топ-5 вкладов</p>
+                    <div id="drawCredits" class="mb-5"></div>
+                    <hr>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script th:inline="javascript" type="text/javascript">
+    var appsStatusesNames = /*[[${appsStatusesNames}]]*/ [];
+    var appsStatusesValues = /*[[${appsStatusesValues}]]*/ [];
+    var creditsNames = /*[[${creditsNames}]]*/ [];
+    var creditsValues = /*[[${creditsValues}]]*/ [];
+
+    function generatePDF() {
+        html2pdf(document.getElementById('generatePDF'));
+    }
+</script>
+<script src="/js/stats.js"></script>
+
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>

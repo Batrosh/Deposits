@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Калькулятор</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: url(&quot;/img/bg.jpg&quot;) top / cover;">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page catalog-page">
+    <div class="container" style="background: #ffffff;margin-top: 150px;padding: 15px;">
+        <div class="d-xl-flex justify-content-xl-center block-heading">
+            <h2 class="text-info">Калькулятор</h2>
+        </div>
+        <div class="content">
+
+            <form action="/calc/calc" method="get" class="row">
+                <div class="col-4">
+                    <p class="fs-5 mb-1">Процентная ставка</p>
+                    <input type="number" required class="form-control" name="rate" th:value="${rate}" min="1" step="1">
+                </div>
+                <div class="col-4">
+                    <p class="fs-5 mb-1">Сумма</p>
+                    <input type="number" required class="form-control" name="sum" th:value="${sum}" min="1" step="1">
+                </div>
+                <div class="col-4">
+                    <p class="fs-5 mb-1">Срок</p>
+                    <input type="number" required class="form-control" name="term" th:value="${term}" min="1" step="1">
+                </div>
+                <div class="col-12 mt-2">
+                    <button type="submit" class="btn btn-primary w-100">Посчитать</button>
+                </div>
+            </form>
+
+            <p class="fs-5" th:text="${result}"></p>
+
+        </div>
+    </div>
+</main>
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>

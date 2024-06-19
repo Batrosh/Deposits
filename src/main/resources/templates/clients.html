@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Клиенты</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: url(&quot;/img/bg.jpg&quot;) top / cover;">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page product-page">
+    <div class="container" style="background: #ffffff;padding: 15px;margin-top: 150px;">
+        <div class="text-center block-heading">
+            <h2 class="text-info" style="margin-bottom: 30px;">Информация о клиентах</h2>
+        </div>
+        <div class="block-content">
+            <div class="product-info">
+                <div class="row">
+                    <div class="col" style="margin-bottom: 10px;">
+                        <h4>ФИО</h4>
+                    </div>
+                    <div class="col" style="margin-bottom: 10px;">
+                        <h4>Номер телефона</h4>
+                    </div>
+                    <div class="col" style="margin-bottom: 10px;">
+                        <h4>Гражданство</h4>
+                    </div>
+                    <div class="col" style="margin-bottom: 10px;">
+                        <h4>Паспортные данные</h4>
+                    </div>
+                </div>
+                <div th:each="c : ${clients}" class="row">
+                    <div class="col" style="margin-bottom: 10px;">
+                        <p><a th:href="'/apps/client/' + ${c.id}" th:text="${c.description.fio}"></a></p>
+                    </div>
+                    <div class="col" style="margin-bottom: 10px;">
+                        <p th:text="${c.description.tel}"></p>
+                    </div>
+                    <div class="col" style="margin-bottom: 10px;">
+                        <p th:text="${c.description.citizenship}"></p>
+                    </div>
+                    <div class="col" style="margin-bottom: 10px;">
+                        <p th:text="${c.description.passport}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>

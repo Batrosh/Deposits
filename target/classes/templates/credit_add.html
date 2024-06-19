@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Информация о вкладе</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: url(&quot;/img/bg.jpg&quot;) top / cover;">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page product-page">
+    <div class="container" style="background: #ffffff;padding: 15px;margin-top: 150px;">
+        <div class="text-center block-heading">
+            <h2 class="text-info">Информация о вкладе</h2>
+        </div>
+        <div th:if="${message}" align="center">
+            <div class="alert alert-warning w-75" role="alert">
+                <strong th:text="${message}"></strong>
+            </div>
+        </div>
+        <form action="/credits/add" method="post" enctype="multipart/form-data" class="row">
+            <div class="col-6 mb-2">
+                <p class="fs-5 mb-1">Название</p>
+                <input class="form-control" type="text" required="" name="name">
+            </div>
+            <div class="col-6 mb-2">
+                <p class="fs-5 mb-1">Процентная ставка</p>
+                <input class="form-control" type="number" name="rate" step="1" min="1" max="100" required>
+            </div>
+            <div class="col-6 mb-2">
+                <p class="fs-5 mb-1">Срок депозита</p>
+                <input class="form-control" type="number" name="term" required step="1" min="1">
+            </div>
+            <div class="col-6 mb-2">
+                <p class="fs-5 mb-1">Минимальная и максимальная сумма депозита</p>
+                <div class="row">
+                    <div class="col">
+                        <input class="form-control" type="number" name="minLimit" required step="1" min="1">
+                    </div>
+                    <div class="col">
+                        <input class="form-control" type="number" name="maxLimit" required step="1" min="1">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 mb-2">
+                <p class="fs-5 mb-1">Тип депозита</p><select class="form-select" name="goal">
+                <option th:each="g : ${goals}" th:value="${g}" th:label="${g.name}"></option>
+            </select>
+            </div>
+            <div class="col-6 mb-2">
+                <p class="fs-5 mb-1">Картинка</p>
+                <input class="form-control" type="file" name="file" required="" accept="image/*">
+            </div>
+            <div class="col-12 mb-2">
+                <p class="fs-5 mb-1">Частота выплат</p>
+                <input type="text" name="payments" class="form-control" required>
+            </div>
+            <div class="col-12 mb-2">
+                <p class="fs-5 mb-1">Описание</p>
+                <textarea name="description" class="form-control" required></textarea>
+            </div>
+            <div class="col-12 mb-2">
+                <button class="btn btn-primary" type="submit" style="width: 100%;">Информация о вкладе</button>
+            </div>
+        </form>
+    </div>
+</main>
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>

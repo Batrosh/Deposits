@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Заявки</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: url(&quot;/img/bg.jpg&quot;) top / cover;">
+    <div th:insert="blocks/nav :: nav"></div>
+    <main class="page catalog-page">
+        <div class="container" style="background: #ffffff;margin-top: 150px;padding: 15px;">
+            <div class="d-xl-flex justify-content-xl-center block-heading">
+                <h2 class="text-info">Заявки</h2>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col">
+                        <div class="products" style="padding: 0px;">
+                            <div class="row" style="margin: 0px;">
+                                <div th:each="a : ${apps}" class="col-4" style="padding: 0px;">
+                                    <div class="clean-product-item">
+                                        <div class="image"><a th:href="'/credits/' + ${a.credit.id}">
+                                            <img class="img-fluid d-block mx-auto" th:src="'/img/' + ${a.credit.file}"></a>
+                                        </div>
+                                        <p style="margin-bottom: 10px;" align="center" th:text="${a.credit.name}"></a></p>
+                                        <p style="margin-bottom: 10px;">Статус: <span th:text="${a.status.name}"></span></p>
+                                        <p style="margin-bottom: 10px;">Дата: <span th:text="${a.date}"></span></p>
+                                        <p style="margin-bottom: 10px;">Клиент: <a th:text="${a.owner.username}" th:href="'/apps/client/' + ${a.owner.id}"></a></p>
+                                        <p style="margin-bottom: 10px;">Сумма: <span th:text="${a.sum}"></span></p>
+                                        <p style="margin-bottom: 10px;">Срок: <span th:text="${a.term} + ' месяц(ев)'"></span></p>
+                                        <p style="margin-bottom: 10px;">Доходность: <span th:text="${a.getShould}"></span></p>
+                                        <p th:if="${a.status.name() == 'REJECTED'}" style="margin-bottom: 10px;">Причина отказа: <span th:text="${a.reason}"></span></p>
+                                        <form th:if="${a.status.name() == 'WAITING'}" th:action="'/apps/reject/' + ${a.id}" method="post">
+                                            <div class="row">
+                                                <div class="col-6"><a class="btn btn-primary" role="button" th:href="'/apps/conf/' + ${a.id}" style="min-width: 100%;">Одобрить</a></div>
+                                                <div class="col-6"><button class="btn btn-danger" type="submit" style="min-width: 100%;">Отказать</button></div>
+                                                <div class="col-12" style="margin-top: 5px;">
+                                                    <input class="form-control" type="text" name="reason" placeholder="Причина отказа" required="">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+    <script src="/js/vanilla-zoom.js"></script>
+    <script src="/js/theme.js"></script>
+</body>
+
+</html>

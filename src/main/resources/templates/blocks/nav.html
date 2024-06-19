@@ -1,0 +1,22 @@
+<nav th:fragment="nav" class="navbar navbar-light navbar-expand-lg fixed-top clean-navbar" style="background: #fdd58c">
+    <div class="container">
+        <a class="navbar-brand logo" href="/">Deposit</a>
+        <ul class="navbar-nav">
+            <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/users">Пользователи</a></li>
+            <li th:if="${role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/stats">Аналитика</a></li>
+
+            <li th:if="${role == 'MANAGER' or role == 'ADMIN'}" class="nav-item"><a class="nav-link" href="/clients">Клиенты</a></li>
+
+            <li th:if="${role == 'MANAGER'}" class="nav-item"><a class="nav-link" href="/apps">Заявки</a></li>
+            <li th:if="${role == 'MANAGER'}" class="nav-item"><a class="nav-link" href="/credits/add">Информация о вкладе</a></li>
+
+            <li th:if="${role != 'NOT'}" class="nav-item"><a class="nav-link" href="/credits/my">Мои депозиты</a></li>
+            <li th:if="${role != 'NOT'}" class="nav-item"><a class="nav-link" href="/calc">Калькулятор</a></li>
+
+            <li th:if="${role != 'NOT'}" class="nav-item"><a class="nav-link" href="/user">Мой профиль</a></li>
+            <li th:if="${role != 'NOT'}" class="nav-item"><a class="nav-link" href="/logout">Выход</a></li>
+            <li th:if="${role == 'NOT'}" class="nav-item"><a class="nav-link" href="/login">Вход</a></li>
+            <li th:if="${role == 'NOT'}"  class="nav-item"><a class="nav-link" href="/reg">Регистрация</a></li>
+        </ul>
+    </div>
+</nav>

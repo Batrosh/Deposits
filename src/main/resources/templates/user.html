@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Мой профиль</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: url(&quot;/img/bg.jpg&quot;) top / cover;">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page product-page">
+    <div class="container" style="background: #ffffff;padding: 15px;margin-top: 150px;">
+        <div class="text-center block-heading">
+            <h2 class="text-info" style="margin-bottom: 30px;">Мой профиль</h2>
+        </div>
+        <div class="block-content">
+            <div class="product-info">
+                <form method="post" action="/user/edit/">
+                    <div class="row">
+                        <div class="col-6" style="margin-bottom: 10px;">
+                            <p>ФИО</p><input class="form-control" type="text" name="fio" required="" th:value="${user.description.fio}">
+                        </div>
+                        <div class="col-6" style="margin-bottom: 10px;">
+                            <p>Номер телефона</p><input class="form-control" type="tel" name="tel" required="" th:value="${user.description.tel}">
+                        </div>
+                        <div class="col-6" style="margin-bottom: 10px;">
+                            <p>Гражданство</p><input class="form-control" type="text" name="citizenship" required="" th:value="${user.description.citizenship}">
+                        </div>
+                        <div class="col-6" style="margin-bottom: 10px;">
+                            <p>Паспортные данные</p><input class="form-control" type="text" name="passport" required=""  th:value="${user.description.passport}">
+                        </div>
+                        <div class="col-auto" style="margin-bottom: 10px;">
+                            <button class="btn btn-primary" type="submit">Обновить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Пользователи</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: url(&quot;/img/bg.jpg&quot;) top / cover;">
+<div th:insert="blocks/nav :: nav"></div>
+<main class="page product-page">
+    <div class="container" style="background: #ffffff;padding: 15px;margin-top: 150px;">
+        <div class="text-center block-heading">
+            <h2 class="text-info" style="margin-bottom: 30px;">Пользователи</h2>
+        </div>
+        <div class="block-content">
+            <div class="product-info">
+                <form th:each="u : ${users}" th:if="${u.id != user.id}" method="post"
+                      th:action="'/users/edit/' + ${u.id}" class="row mb-2">
+                    <div class="col">
+                        <input class="form-control" type="text" readonly th:value="${u.description.fio}">
+                    </div>
+                    <div class="col">
+                        <input class="form-control" type="text" readonly th:value="${u.description.passport}">
+                    </div>
+                    <div class="col">
+                        <select class="form-select" name="role" required="">
+                            <option th:each="r : ${roles}" th:value="${r}" th:label="${r.name}"
+                                    th:selected="${r == u.role}"></option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary" type="submit">Обновить</button>
+                    </div>
+                    <div class="col-2">
+                        <a th:if="${u.enabled == false}" th:href="${'/users/' + u.id +'/enable'}" class="btn btn-success w-100">Идентифицировать</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="/js/vanilla-zoom.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+</html>

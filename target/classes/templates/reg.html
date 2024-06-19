@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Регистрация</title>
+</head>
+<head th:insert="blocks/head :: head"></head>
+<body style="background: url(&quot;/img/bg.jpg&quot;) top / cover;">
+    <div th:insert="blocks/nav :: nav"></div>
+    <main class="page registration-page">
+        <div class="container" style="margin-top: 150px;background: #ffffff;padding: 20px;">
+            <div class="d-xl-flex justify-content-xl-center block-heading">
+                <h2 class="text-info">Регистрация</h2>
+            </div>
+            <div th:if="${message}" align="center">
+                <div class="alert alert-warning w-75" role="alert">
+                    <strong th:text="${message}"></strong>
+                </div>
+            </div>
+            <form action="/reg" method="post" class="row">
+                <div class="col-6 mb-3">
+                    <p class="form-label">ФИО</p>
+                    <input class="form-control" type="text" name="fio" required="">
+                </div>
+                <div class="col-6 mb-3">
+                    <p class="form-label">Паспорт</p>
+                    <input class="form-control" type="text" name="passport" required="">
+                </div>
+                <div class="col-6 mb-3">
+                    <p class="form-label">Логин</p>
+                    <input class="form-control" type="text" name="username" required="">
+                </div>
+                <div class="col-6 mb-3">
+                    <p class="form-label">Пароль</p>
+                    <input class="form-control" type="password" name="password" required="">
+                </div>
+                <div class="col-12 mb-3">
+                <button class="btn btn-primary" type="submit" style="width: 100%;">Зарегистрироваться</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+    <script src="/js/vanilla-zoom.js"></script>
+    <script src="/js/theme.js"></script>
+</body>
+
+</html>
